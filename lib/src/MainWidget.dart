@@ -3,7 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 
-class MainWidget extends StatelessWidget {
+class MainWidget extends StatefulWidget {
+
+  @override
+  _MainWidgetState createState() => _MainWidgetState();
+
+}
+
+
+class _MainWidgetState extends State<MainWidget> {
+  final Map cardBase = {
+    "suits": ["club", "diamond", "heart", "spade"],
+    "group": {
+      0: ["1", "2", "3", "4"],
+      1: ["5", "6", "7", "8"],
+      2: ["9", "10", "j", "q"],
+      3: ["k", "joker"],
+      },
+  };
+  int _counter = 0;
+  List chosenValue = [];
   @override
   Widget build(BuildContext context) {
     final children = new Scaffold(
@@ -29,17 +48,35 @@ class MainWidget extends StatelessWidget {
     print("x=$x y=$y dx=$dx dy=$dy");
 
     int position = dx + dy * 2;
-    print(position);
 
-    _save(position);
+    _detectValueOfCard(position);
+
+    ++_counter;
+}
+
+  _detectValueOfCard(int position) {
+    if (chosenValue.length < 3) {
+      if (_counter == 0) chosenValue.add(cardBase["suits"][position]);
+      else if(_counter == 1) chosenValue.add(cardBase["group"][position]);
+      else _finalDetectionValueOfCard(position);
+    }
+    print(chosenValue);
   }
 
-  _save(int position) async{
+  _finalDetectionValueOfCard(int position) {
+    chosenValue.add(position);
+    _save();
+  }
+
+  _save() async{
     var tempDir = await getTemporaryDirectory();
-    String savePath = tempDir.path + "/carta-$position.jpg";
+    String savePath = tempDir.path + "/carta.jpg";
     print(savePath);
 
-    String urlPath = "";
+    String card = chosenValue[0] + chosenValue[1][chosenValue[2]];
+
+    String urlPath = "https://github.com/gabrielchiba/magic_app/raw/master/assets/cards/$card.jpg";
+    print(urlPath);
 
     await Dio().download(
         urlPath,
@@ -49,6 +86,4 @@ class MainWidget extends StatelessWidget {
     print(results);
 
   }
-
-
 }
