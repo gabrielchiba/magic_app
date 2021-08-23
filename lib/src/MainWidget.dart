@@ -15,10 +15,10 @@ class _MainWidgetState extends State<MainWidget> {
   final Map cardBase = {
     "suits": ["club", "diamond", "heart", "spade"],
     "group": {
-      0: ["1", "2", "3", "4"],
-      1: ["5", "6", "7", "8"],
-      2: ["9", "10", "j", "q"],
-      3: ["k", "joker"],
+      0: ["1", "2", "3"],
+      1: ["4", "5", "6"],
+      2: ["7", "8", "9"],
+      3: ["10", "j", "q", "k"],
       },
   };
   int _counter = 0;
