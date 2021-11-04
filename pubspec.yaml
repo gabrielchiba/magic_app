@@ -29,6 +29,7 @@ dependencies:
   path_provider: ^2.0.2
   image_gallery_saver: ^1.6.9
   android_intent_plus: ^2.0.0
+  fluttertoast: ^8.0.8
 
 dev_dependencies:
   flutter_test:

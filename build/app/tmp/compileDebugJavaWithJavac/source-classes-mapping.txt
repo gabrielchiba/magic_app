@@ -1,0 +1,6 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/gabrielc/magic_app/BuildConfig.java
+ com.gabrielc.magic_app.BuildConfig
+com/gabrielc/magic_app/MainActivity.java
+ com.gabrielc.magic_app.MainActivity
